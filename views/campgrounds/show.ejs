@@ -1,0 +1,109 @@
+<% include ../partials/head %>
+<div class="row">
+    <div class="col-md-3">
+        <h3 class="text-muted">YelpCamp</h3>
+        <ul class="list-group">
+          <li class="list-group-item active">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <a class="btn btn-success btn-block text-center" style="margin-top: .5rem;" href="/campgrounds">Back to Listings</a>
+    </div>
+    <div class="col-md-9">
+        <div class="card">
+            <img class="card-img-top" src="<%= campground.image %>" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="#"><%= campground.name %></a>
+                    <span class="float-right">$<%= campground.price %>/night</span>
+                </h5>
+                <p class="card-text"><%= campground.description %></p>
+                <% if(thisUser && campground.author.id.equals(thisUser._id)) { %>
+                    <strong>You Created This Post Brody!</strong>
+                    <div class="btn-group float-right" role="group" aria-label="Basic example">
+                        <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-primary">Edit Campground</a>
+                        <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">
+                                Delete Campground
+                            </button>
+                        </form>
+                    </div>
+                <% } else { %>
+                    <span class="card-text">Posted By: <strong><%= campground.author.username %></strong></span>
+                <% } %>
+            </div>
+            <ul class="list-group list-group-flush">
+                <% if(campground.comments.length < 1){%>
+                    <li class="list-group-item">
+                        <span class="h5 align-middle">There Are No Comments To Display</span>
+                        <a class="btn btn-primary card-link float-right" href="/campgrounds/<%= campground._id %>/comments/new">Write a Comment!</a>
+                    </li>
+                <% } else { %>
+                    <li class="list-group-item">
+                        <span class="h5 align-middle">Comments:</span>
+                        <a class="btn btn-primary card-link float-right" href="/campgrounds/<%= campground._id %>/comments/new">Write a Comment!</a>
+                    </li>
+                    <% campground.comments.forEach(function(comment) { %>
+                        <li class="list-group-item">
+                            <strong><%= comment.author.username %></strong>: <%= comment.text %>
+                            <span class="float-right">10 Days Ago</span>
+                            <% if(thisUser && comment.author.id.equals(thisUser._id)) { %>
+                                <p>
+                                    <div class="btn-group dropleft float-right">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Options
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item editBtn" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit Comment</a>
+                                            <form action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                                <button type="submit" class="dropdown-item deleteBtn">
+                                                    Delete Comment
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                <p>
+                            <% } %>
+                        </li>
+                    <% }); %>
+                <% } %>
+            </ul>
+        </div>
+        
+        <!--
+        <div class="text-center">
+            <h1>This Campground: <%= campground.name %></h1>
+            
+            <img src="<%= campground.image %>" class="rounded img-fluid responsive" alt="<%= campground.name %>">
+            
+            <blockquote class="blockquote">
+                <p class="mb-0"><%= campground.description %></p>
+            </blockquote>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <% campground.comments.forEach(function(comment) { %>
+                        <li class="list-group-item">
+                            <strong><%= comment.author %></strong>: <%= comment.text %>
+                        </li>
+                    <% }); %>
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+            
+            <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>/comments/new">Write a Comment!</a>
+            <a class="btn btn-success" href="/campgrounds">Go Back to Listings</a>
+            
+        </div>
+        -->
+    </div>
+</div>
+
+    
+
+
+
+<% include ../partials/foot %>

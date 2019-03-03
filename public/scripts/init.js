@@ -1,0 +1,1 @@
+console.log("I have Successfully Initialized The Client-Side JavaScript File");

@@ -1,0 +1,44 @@
+/* Testing to see if the style file include works, HINT: IT DOES
+h1 {
+    color: red;
+}
+*/
+body {
+    padding-bottom: 2em !important;
+}
+
+.jumbotron {
+    margin-top: 1em;
+}
+
+.card {
+    margin-top: .5rem;
+    margin-bottom: 1em;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.editBtn {
+    background: #ffc107!important;
+    color: #212529!important;
+    opacity: 0.8!important;
+    transition: 0.3s!important;
+}
+
+.deleteBtn {
+    color: white!important;
+    background: #dc3545!important;
+    opacity: 0.8!important;
+    transition: 0.3s!important;
+}
+
+.editBtn:hover, .deleteBtn:hover {
+    opacity: 1.0!important;
+}
+
+.alert {
+    margin: 10px 0;
+}
