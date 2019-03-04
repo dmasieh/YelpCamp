@@ -17,7 +17,11 @@ var campgroundRoutes    = require("./routes/campgrounds"),
     commentRoutes       = require("./routes/comments"),
     allElseRoutes       = require("./routes/index");
 
+/*
 mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
+*/
+mongoose.connect("mongodb+srv://dma513h-mongo:sY8PuUKnQnXNQ3V@cluster0-9mx4z.mongodb.net/test?retryWrites=true", { useNewUrlParser: true });
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 // initialize and require express sessions with a few arguments as a single combined statement
