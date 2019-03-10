@@ -18,9 +18,11 @@ var campgroundRoutes    = require("./routes/campgrounds"),
     allElseRoutes       = require("./routes/index");
 
 
-//console.log(process.env.DATABASEURL)
-//mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+// USE a Database URL declared in the environment variables, otherwise, default to 
+// DB Connection String that is localized/declared below, if the string doesn't exist
+// Then default to the localized MongoDB Instance
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp"
+mongoose.connect(url, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({extended: true}));
 
