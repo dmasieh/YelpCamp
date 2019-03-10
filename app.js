@@ -17,10 +17,11 @@ var campgroundRoutes    = require("./routes/campgrounds"),
     commentRoutes       = require("./routes/comments"),
     allElseRoutes       = require("./routes/index");
 
-/*
-mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
-*/
-mongoose.connect("mongodb+srv://dma513h-mongo:sY8PuUKnQnXNQ3V@cluster0-9mx4z.mongodb.net/test?retryWrites=true", { useNewUrlParser: true });
+
+//console.log(process.env.DATABASEURL)
+//mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true });
+//mongoose.connect("mongodb+srv://dma513h-mongo:sY8PuUKnQnXNQ3V@cluster0-9mx4z.mongodb.net/test?retryWrites=true", { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -65,8 +66,7 @@ app.set('view engine', 'ejs');
 
 // seed the database after deleting whatever comments and/or campgrounds we're already there
 // seedDB(); 
-
-console.log(__dirname);
+//console.log(__dirname);
 
 // START THE SERVER
 app.listen(process.env.PORT, process.env.IP, function(){
